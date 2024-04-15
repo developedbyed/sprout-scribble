@@ -6,12 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate:pg --config drizzle.config.ts",
+    "db:push": "drizzle-kit push:pg --config drizzle.config.ts"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^0.9.1",
+    "@vercel/postgres": "^0.8.0",
+    "dotenv": "^16.4.5",
     "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.30.8",
     "next": "14.2.1",
+    "pg": "^8.11.5",
     "react": "^18",
     "react-dom": "^18"
   },
