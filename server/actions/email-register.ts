@@ -6,6 +6,7 @@ import { db } from ".."
 import { eq } from "drizzle-orm"
 import { users } from "../schema"
 import { generateEmailVerificationToken } from "./tokens"
+import { sendVerificationEmail } from "./email"
 
 const action = createSafeActionClient()
 
@@ -23,7 +24,10 @@ export const emailRegister = action(
     if (existingUser) {
       if (!existingUser.emailVerified) {
         const verificationToken = await generateEmailVerificationToken(email)
-        // await setnVerificationEmail()
+        await sendVerificationEmail(
+          verificationToken[0].email,
+          verificationToken[0].token
+        )
 
         return { success: "Email Confirmation resent" }
       }
@@ -34,11 +38,15 @@ export const emailRegister = action(
     await db.insert(users).values({
       email,
       name,
+      password: hashedPassword,
     })
 
     const verificationToken = await generateEmailVerificationToken(email)
 
-    // await sendVerificationEmail()
+    await sendVerificationEmail(
+      verificationToken[0].email,
+      verificationToken[0].token
+    )
 
     return { success: "Confirmation Email Sent!" }
   }
