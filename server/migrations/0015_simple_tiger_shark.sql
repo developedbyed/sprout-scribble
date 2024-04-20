@@ -1,0 +1,1 @@
+ALTER TABLE "email_tokens" ALTER COLUMN "id" SET NOT NULL;
