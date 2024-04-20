@@ -29,6 +29,14 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"roles" "roles" DEFAULT 'user'
 );
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "verificationToken" (
+	"id" text PRIMARY KEY NOT NULL,
+	"token" text NOT NULL,
+	"email" text NOT NULL,
+	"expires" timestamp NOT NULL,
+	CONSTRAINT "verificationToken_token_unique" UNIQUE("token")
+);
+--> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "account" ADD CONSTRAINT "account_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION

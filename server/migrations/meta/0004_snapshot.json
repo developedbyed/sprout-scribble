@@ -1,6 +1,6 @@
 {
-  "id": "1065485d-07be-49e7-9b54-853c34ca0392",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "3b60c58d-ad5e-4f9c-b621-cd183cabc9a7",
+  "prevId": "749e94eb-3934-4b6d-a914-a0b0009c97c6",
   "version": "5",
   "dialect": "pg",
   "tables": {
@@ -155,48 +155,6 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
-    },
-    "verificationToken": {
-      "name": "verificationToken",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "text",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "token": {
-          "name": "token",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "email": {
-          "name": "email",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "expires": {
-          "name": "expires",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "verificationToken_token_unique": {
-          "name": "verificationToken_token_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "token"
-          ]
-        }
-      }
     }
   },
   "enums": {

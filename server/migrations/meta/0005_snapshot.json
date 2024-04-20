@@ -1,6 +1,6 @@
 {
-  "id": "1065485d-07be-49e7-9b54-853c34ca0392",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "b248b431-6bd0-4f3c-a7ed-e4cb37b1c944",
+  "prevId": "3b60c58d-ad5e-4f9c-b621-cd183cabc9a7",
   "version": "5",
   "dialect": "pg",
   "tables": {
@@ -163,17 +163,11 @@
         "id": {
           "name": "id",
           "type": "text",
-          "primaryKey": true,
+          "primaryKey": false,
           "notNull": true
         },
         "token": {
           "name": "token",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "email": {
-          "name": "email",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -187,16 +181,16 @@
       },
       "indexes": {},
       "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "verificationToken_token_unique": {
-          "name": "verificationToken_token_unique",
-          "nullsNotDistinct": false,
+      "compositePrimaryKeys": {
+        "verificationToken_id_token_pk": {
+          "name": "verificationToken_id_token_pk",
           "columns": [
+            "id",
             "token"
           ]
         }
-      }
+      },
+      "uniqueConstraints": {}
     }
   },
   "enums": {
