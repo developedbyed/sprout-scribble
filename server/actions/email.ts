@@ -1,3 +1,5 @@
+"use server"
+
 import getBaseURL from "@/lib/base-url"
 import { Resend } from "resend"
 
@@ -6,8 +8,6 @@ const domain = getBaseURL()
 
 export const sendVerificationEmail = async (email: string, token: string) => {
   const confirmLink = `${domain}/auth/new-verification?token=${token}`
-  console.log(domain + "domain")
-
   const { data, error } = await resend.emails.send({
     from: "onboarding@resend.dev",
     to: email,
