@@ -38,7 +38,7 @@ export const emailRegister = action(
 
     const verificationToken = await generateEmailVerificationToken(email)
 
-    await sendVerificationEmail()
+    // await sendVerificationEmail()
 
     return { success: "Confirmation Email Sent!" }
   }
