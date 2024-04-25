@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { FormSuccess } from "./form-success"
 import { FormError } from "./form-error"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { revalidatePath } from "next/cache"
 import { NewPasswordSchema } from "@/types/new-password-schema"
 import { newPassword } from "@/server/actions/new-password"
@@ -35,6 +35,9 @@ export const NewPasswordForm = () => {
       password: "",
     },
   })
+
+  const searchParams = useSearchParams()
+  const token = searchParams.get("token")
 
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
@@ -49,7 +52,7 @@ export const NewPasswordForm = () => {
   })
 
   const onSubmit = (values: z.infer<typeof NewPasswordSchema>) => {
-    execute(values)
+    execute({ password: values.password, token })
   }
 
   return (

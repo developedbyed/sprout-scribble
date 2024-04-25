@@ -7,12 +7,16 @@ import { db } from ".."
 import { eq } from "drizzle-orm"
 import { passwordResetTokens, users } from "../schema"
 import bcrypt from "bcrypt"
+import { Pool } from "@neondatabase/serverless"
+import { drizzle } from "drizzle-orm/neon-serverless"
 
 const action = createSafeActionClient()
 
 export const newPassword = action(
   NewPasswordSchema,
   async ({ password, token }) => {
+    const pool = new Pool({ connectionString: process.env.POSTGRES_URL })
+    const dbPool = drizzle(pool)
     //TO CHECK THE TOKEN
     if (!token) {
       return { error: "Missing Token" }
@@ -37,7 +41,7 @@ export const newPassword = action(
 
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    await db.transaction(async (tx) => {
+    await dbPool.transaction(async (tx) => {
       await tx
         .update(users)
         .set({
