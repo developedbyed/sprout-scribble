@@ -141,6 +141,13 @@
       "when": 1713988243253,
       "tag": "0019_jittery_vector",
       "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "5",
+      "when": 1714308577813,
+      "tag": "0020_daily_sinister_six",
+      "breakpoints": true
     }
   ]
 }
