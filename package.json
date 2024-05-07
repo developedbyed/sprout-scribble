@@ -22,6 +22,7 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-toggle": "^1.0.3",
     "@tiptap/extension-placeholder": "^2.3.1",
+    "@tiptap/pm": "^2.3.1",
     "@tiptap/react": "^2.3.1",
     "@tiptap/starter-kit": "^2.3.1",
     "@types/bcrypt": "^5.0.2",
