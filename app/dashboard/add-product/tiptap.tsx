@@ -31,6 +31,7 @@ const Tiptap = ({ val }: { val: string }) => {
         },
       }),
     ],
+
     onUpdate: ({ editor }) => {
       const content = editor.getHTML()
       setValue("description", content, {
@@ -46,10 +47,6 @@ const Tiptap = ({ val }: { val: string }) => {
     },
     content: val,
   })
-
-  useEffect(() => {
-    if (editor?.isEmpty) editor.commands.setContent(val)
-  }, [val, editor])
 
   return (
     <div className="flex flex-col gap-2">

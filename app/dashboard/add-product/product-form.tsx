@@ -24,6 +24,8 @@ import { Input } from "@/components/ui/input"
 import { DollarSign } from "lucide-react"
 import Tiptap from "./tiptap"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useAction } from "next-safe-action/hooks"
+import { createProduct } from "@/server/actions/create-product"
 
 export default function ProductForm() {
   const form = useForm<zProductSchema>({
@@ -34,6 +36,19 @@ export default function ProductForm() {
       price: 0,
     },
   })
+
+  const { execute, status } = useAction(createProduct, {
+    onSuccess: (data) => {
+      if (data?.success) {
+      }
+    },
+    onError: (error) => console.error(error),
+  })
+
+  async function onSubmit(values: zProductSchema) {
+    execute(values)
+  }
+
   return (
     <Card>
       <CardHeader>
@@ -42,12 +57,12 @@ export default function ProductForm() {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={() => console.log("hey")} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="title"
               render={({ field }) => (
-                <FormItem className="py-2">
+                <FormItem>
                   <FormLabel>Product Title</FormLabel>
                   <FormControl>
                     <Input placeholder="Saekdong Stripe" {...field} />
@@ -94,7 +109,17 @@ export default function ProductForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <Button
+              className="w-full"
+              disabled={
+                status === "executing" ||
+                !form.formState.isValid ||
+                !form.formState.isDirty
+              }
+              type="submit"
+            >
+              Submit
+            </Button>
           </form>
         </Form>
       </CardContent>
