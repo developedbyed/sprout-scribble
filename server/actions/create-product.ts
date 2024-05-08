@@ -32,7 +32,7 @@ export const createProduct = action(
         return { success: `Product ${newProduct[0].title} has been created` }
       }
     } catch (err) {
-      return { error: JSON.stringify(err) }
+      return { error: "Failed to create product" }
     }
   }
 )
