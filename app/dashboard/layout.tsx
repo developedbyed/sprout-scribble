@@ -49,7 +49,6 @@ export default async function DashboardLayout({
   return (
     <div>
       <DashboardNav allLinks={allLinks} />
-
       {children}
     </div>
   )

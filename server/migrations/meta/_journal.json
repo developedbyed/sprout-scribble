@@ -155,6 +155,13 @@
       "when": 1715086937419,
       "tag": "0021_ambiguous_lizard",
       "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "5",
+      "when": 1715174364084,
+      "tag": "0022_strange_zarek",
+      "breakpoints": true
     }
   ]
 }
