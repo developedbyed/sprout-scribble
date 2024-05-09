@@ -28,6 +28,7 @@ import { Button } from "@/components/ui/button"
 import { Trash } from "lucide-react"
 import { Reorder } from "framer-motion"
 import { useState } from "react"
+import { Input } from "@/components/ui/input"
 
 export default function VariantImages() {
   const { getValues, control, setError } =
@@ -39,12 +40,13 @@ export default function VariantImages() {
   })
 
   const [active, setActive] = useState(0)
+  console.log(getValues())
 
   return (
     <div>
       <FormField
         control={control}
-        name="variantImages"
+        name={"variantImages"}
         render={({ field }) => (
           <FormItem>
             <FormLabel>Tags</FormLabel>
