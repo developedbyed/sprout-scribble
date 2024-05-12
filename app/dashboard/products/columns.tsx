@@ -50,52 +50,6 @@ const ActionCell = ({ row }: { row: Row<ProductColumn> }) => {
   })
   const product = row.original
 
-  const VariantCell = ({ row }: { row: Row<ProductColumn> }) => {
-    const variants = row.getValue("variants") as VariantsWithImagesTags[]
-    return (
-      <div className="flex gap-2">
-        {variants.map((variant) => (
-          <div key={variant.id}>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <ProductVariant
-                    productID={variant.productID}
-                    variant={variant}
-                    editMode={true}
-                  >
-                    <div
-                      className="w-5 h-5 rounded-full"
-                      key={variant.id}
-                      style={{ background: variant.color }}
-                    />
-                  </ProductVariant>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{variant.productType}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </div>
-        ))}
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <span>
-                <ProductVariant productID={row.original.id} editMode={false}>
-                  <PlusCircle className="h-5 w-5" />
-                </ProductVariant>
-              </span>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Create a new product variant</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </div>
-    )
-  }
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
