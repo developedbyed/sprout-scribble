@@ -162,6 +162,13 @@
       "when": 1715174364084,
       "tag": "0022_strange_zarek",
       "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "5",
+      "when": 1715527946376,
+      "tag": "0023_strange_the_hunter",
+      "breakpoints": true
     }
   ]
 }

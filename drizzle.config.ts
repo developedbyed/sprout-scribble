@@ -1,15 +1,15 @@
-import type { Config } from "drizzle-kit"
+import { defineConfig } from "drizzle-kit"
 import * as dotenv from "dotenv"
 
 dotenv.config({
   path: ".env.local",
 })
 
-export default {
+export default defineConfig({
+  dialect: "postgresql",
   schema: "./server/schema.ts",
   out: "./server/migrations",
-  driver: "pg", // 'pg' | 'mysql2' | 'better-sqlite' | 'libsql' | 'turso'
   dbCredentials: {
-    connectionString: process.env.POSTGRES_URL!,
+    url: process.env.POSTGRES_URL!,
   },
-} satisfies Config
+})

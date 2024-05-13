@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:generate": "drizzle-kit generate:pg --config drizzle.config.ts",
-    "db:push": "drizzle-kit push:pg --config drizzle.config.ts"
+    "db:generate": "drizzle-kit generate  drizzle.config.ts",
+    "db:push": "drizzle-kit push  drizzle.config.ts"
   },
   "dependencies": {
     "@algolia/autocomplete-js": "^1.17.0",
@@ -20,6 +20,7 @@
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
@@ -36,6 +37,7 @@
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.8",
     "embla-carousel-react": "^8.0.4",
@@ -62,7 +64,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "drizzle-kit": "^0.20.17",
+    "drizzle-kit": "^0.21.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.1",
     "postcss": "^8",
