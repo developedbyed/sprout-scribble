@@ -9,10 +9,14 @@ import {
   TableHeader,
 } from "@/components/ui/table"
 import { useCartStore } from "@/lib/client-store"
+import { AnimatePresence, motion } from "framer-motion"
 import { useMemo } from "react"
 import formatPrice from "@/lib/format-price"
 import Image from "next/image"
 import { MinusCircle, PlusCircle } from "lucide-react"
+import Lottie from "lottie-react"
+import emptyCart from "@/public/empty-box.json"
+import { createId } from "@paralleldrive/cuid2"
 
 export default function CartItems() {
   const { cart, addToCart, removeFromCart } = useCartStore()
@@ -23,11 +27,26 @@ export default function CartItems() {
     }, 0)
   }, [cart])
 
+  const priceInLetters = useMemo(() => {
+    return [...totalPrice.toFixed(2).toString()].map((letter) => {
+      return { letter, id: createId() }
+    })
+  }, [totalPrice])
+
   return (
-    <div>
+    <motion.div>
       {cart.length === 0 && (
-        <div>
-          <h1>Cart is empty</h1>
+        <div className="flex-col w-full flex items-center justify-center">
+          <motion.div
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            <h2 className="text-2xl text-muted-foreground text-center">
+              Your cart is empty
+            </h2>
+            <Lottie className="h-64" animationData={emptyCart} />
+          </motion.div>
         </div>
       )}
       {cart.length > 0 && (
@@ -97,6 +116,24 @@ export default function CartItems() {
           </Table>
         </div>
       )}
-    </div>
+      <motion.div className="flex items-center justify-center relative my-4 overflow-hidden">
+        <span className="text-md">Total: $</span>
+        <AnimatePresence mode="popLayout">
+          {priceInLetters.map((letter, i) => (
+            <motion.div key={letter.id}>
+              <motion.span
+                initial={{ y: 20 }}
+                animate={{ y: 0 }}
+                exit={{ y: -20 }}
+                transition={{ delay: i * 0.1 }}
+                className="text-md inline-block"
+              >
+                {letter.letter}
+              </motion.span>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
+    </motion.div>
   )
 }
