@@ -11,6 +11,7 @@ export default async function Reviews({ productID }: { productID: number }) {
     where: eq(reviews.productID, productID),
     orderBy: [desc(reviews.created)],
   })
+
   return (
     <section className="py-8">
       <h2 className="text-2xl font-bold mb-4">Product Reviews</h2>
