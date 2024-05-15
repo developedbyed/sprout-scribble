@@ -68,9 +68,11 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "bcryptjs": "^2.4.3",
     "drizzle-kit": "^0.21.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.1",
