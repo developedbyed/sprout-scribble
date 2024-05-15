@@ -1,9 +1,9 @@
-"use client"
+"use server"
 
 import { createOrderSchema } from "@/types/order-schema"
 import { createSafeActionClient } from "next-safe-action"
 import { auth } from "../auth"
-import { db } from ".."
+import { db } from "@/server"
 import { orderProduct, orders } from "../schema"
 
 const action = createSafeActionClient()

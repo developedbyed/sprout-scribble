@@ -22,13 +22,18 @@ export type CartState = {
   ) => void
   addToCart: (item: CartItem) => void
   removeFromCart: (item: CartItem) => void
+  clearCart: () => void
+  cartOpen: boolean
+  setCartOpen: (val: boolean) => void
 }
 
 export const useCartStore = create<CartState>()(
   persist(
     (set) => ({
       cart: [],
-
+      cartOpen: false,
+      setCartOpen: (val) => set({ cartOpen: val }),
+      clearCart: () => set({ cart: [] }),
       checkoutProgress: "cart-page",
       setCheckoutProgress: (val) => set((state) => ({ checkoutProgress: val })),
       addToCart: (item) =>

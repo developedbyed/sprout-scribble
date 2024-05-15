@@ -12,11 +12,13 @@ import { AnimatePresence, motion } from "framer-motion"
 import CartItems from "./cart-items"
 import CartMessage from "./cart-message"
 import Payment from "./payment"
+import OrderConfirmed from "./order-confirmed"
 
 export default function CartDrawer() {
-  const { cart, checkoutProgress } = useCartStore()
+  const { cart, checkoutProgress, setCheckoutProgress, cartOpen, setCartOpen } =
+    useCartStore()
   return (
-    <Drawer>
+    <Drawer open={cartOpen} onOpenChange={setCartOpen}>
       <DrawerTrigger>
         <div className="relative px-2">
           <AnimatePresence>
@@ -41,6 +43,7 @@ export default function CartDrawer() {
         <div className="overflow-auto p-4">
           {checkoutProgress === "cart-page" && <CartItems />}
           {checkoutProgress === "payment-page" && <Payment />}
+          {checkoutProgress === "confirmation-page" && <OrderConfirmed />}
         </div>
       </DrawerContent>
     </Drawer>

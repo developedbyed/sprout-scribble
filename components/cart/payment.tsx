@@ -22,7 +22,7 @@ export default function Payment() {
         options={{
           mode: "payment",
           currency: "usd",
-          amount: totalPrice,
+          amount: totalPrice * 100,
         }}
       >
         <PaymentForm totalPrice={totalPrice} />
