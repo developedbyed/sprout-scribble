@@ -69,7 +69,6 @@ export default function PaymentForm({ totalPrice }: { totalPrice: number }) {
         elements,
         clientSecret: data.success.clientSecretID!,
         redirect: "if_required",
-
         confirmParams: {
           return_url: "http://localhost:3000/success",
           receipt_email: data.success.user as string,
@@ -83,6 +82,7 @@ export default function PaymentForm({ totalPrice }: { totalPrice: number }) {
         setIsLoading(false)
         execute({
           status: "pending",
+          paymentIntentID: data.success.paymentIntentID,
           total: totalPrice,
           products: cart.map((item) => ({
             productID: item.id,

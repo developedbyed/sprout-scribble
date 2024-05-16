@@ -48,6 +48,7 @@
     "input-otp": "^1.2.4",
     "lottie-react": "^2.4.0",
     "lucide-react": "^0.371.0",
+    "micro": "^10.0.1",
     "next": "14.2.1",
     "next-auth": "^5.0.0-beta.16",
     "next-safe-action": "^6.2.0",
