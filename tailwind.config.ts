@@ -25,6 +25,9 @@ const config = withUt({
       minHeight: {
         "50vh": "50vh",
       },
+      maxHeight: {
+        "50vh": "50vh",
+      },
       height: {
         "88": "22rem",
       },
