@@ -46,8 +46,6 @@ export async function POST(req: NextRequest) {
         })
         .where(eq(orders.paymentIntentID, event.data.object.id))
         .returning()
-      console.log(charge.receipt_url)
-      console.log(charge)
 
       // Then define and call a function to handle the event product.created
       break

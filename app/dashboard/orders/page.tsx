@@ -26,6 +26,7 @@ import { formatDistance, subMinutes } from "date-fns"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -39,6 +40,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { MoreHorizontal } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export default async function Page() {
   const user = await auth()
@@ -84,8 +86,8 @@ export default async function Page() {
                   <Badge
                     className={
                       order.status === "succeeded"
-                        ? "bg-green-700"
-                        : "bg-secondary-foreground"
+                        ? "bg-green-700 hover:bg-green-800"
+                        : "bg-yellow-700 hover:bg-yellow-800"
                     }
                   >
                     {order.status}
@@ -112,11 +114,27 @@ export default async function Page() {
                             </Button>
                           </DialogTrigger>
                         </DropdownMenuItem>
+                        {order.receiptURL ? (
+                          <DropdownMenuItem>
+                            <Button
+                              asChild
+                              className="w-full"
+                              variant={"ghost"}
+                            >
+                              <Link href={order.receiptURL} target="_blank">
+                                Download Receipt
+                              </Link>
+                            </Button>
+                          </DropdownMenuItem>
+                        ) : null}
                       </DropdownMenuContent>
                     </DropdownMenu>
-                    <DialogContent>
+                    <DialogContent className="rounded-md">
                       <DialogHeader>
                         <DialogTitle>Order Details #{order.id}</DialogTitle>
+                        <DialogDescription>
+                          Your order total is ${order.total}
+                        </DialogDescription>
                       </DialogHeader>
                       <Card className="overflow-auto p-2 flex flex-col gap-4">
                         <Table>
