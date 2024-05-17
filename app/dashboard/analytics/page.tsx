@@ -9,17 +9,17 @@ import { db } from "@/server"
 import { orderProduct } from "@/server/schema"
 import { desc } from "drizzle-orm"
 import Sales from "./sales"
+import Earnings from "./earnings"
 
 export default async function Analytics() {
   const totalOrders = await db.query.orderProduct.findMany({
-    orderBy: [desc(orderProduct.id)],
-    limit: 10,
     with: {
       order: { with: { user: true } },
       product: true,
       productVariants: { with: { variantImages: true } },
     },
   })
+  console.log(totalOrders.length)
 
   if (totalOrders.length === 0)
     return (
@@ -39,8 +39,9 @@ export default async function Analytics() {
             Check your sales, new customers and more
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex flex-col lg:flex-row gap-8 ">
           <Sales totalOrders={totalOrders} />
+          <Earnings totalOrders={totalOrders} />
         </CardContent>
       </Card>
     )
