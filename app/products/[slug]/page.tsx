@@ -11,6 +11,8 @@ import { getReviewAverage } from "@/lib/review-avarage"
 import Stars from "@/components/reviews/stars"
 import AddCart from "@/components/cart/add-cart"
 
+export const revalidate = 60
+
 export async function generateStaticParams() {
   const data = await db.query.productVariants.findMany({
     with: {
@@ -46,6 +48,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     const reviewAvg = getReviewAverage(
       variant?.product.reviews.map((r) => r.rating)
     )
+
     return (
       <main>
         <section className="flex flex-col lg:flex-row gap-4 lg:gap-12">

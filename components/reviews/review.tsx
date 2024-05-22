@@ -7,7 +7,6 @@ import { formatDistance, subDays } from "date-fns"
 import Stars from "./stars"
 
 export default function Review({ reviews }: { reviews: ReviewsWithUser[] }) {
-  console.log(reviews)
   return (
     <motion.div className="flex flex-col gap-4 my-2">
       {reviews.map((review) => (

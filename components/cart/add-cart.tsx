@@ -36,7 +36,9 @@ export default function AddCart() {
         >
           <Minus size={18} strokeWidth={3} />
         </Button>
-        <Button className="flex-1">Quantity: {quantity}</Button>
+        <Button variant={"secondary"} className="flex-1">
+          Quantity: {quantity}
+        </Button>
         <Button
           onClick={() => {
             setQuantity(quantity + 1)

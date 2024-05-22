@@ -6,10 +6,11 @@ import {
   CardHeader,
 } from "@/components/ui/card"
 import { db } from "@/server"
-import { orderProduct } from "@/server/schema"
-import { desc } from "drizzle-orm"
+
 import Sales from "./sales"
 import Earnings from "./earnings"
+
+export const revalidate = 0
 
 export default async function Analytics() {
   const totalOrders = await db.query.orderProduct.findMany({
@@ -19,7 +20,6 @@ export default async function Analytics() {
       productVariants: { with: { variantImages: true } },
     },
   })
-  console.log(totalOrders.length)
 
   if (totalOrders.length === 0)
     return (

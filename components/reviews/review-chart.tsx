@@ -31,7 +31,6 @@ export default function ReviewChart({
       <div className="flex flex-col gap-2">
         <CardTitle>Product Rating:</CardTitle>
         <CardDescription className="text-lg font-medium">
-          {" "}
           {totalRating.toFixed(1)} stars
         </CardDescription>
       </div>
