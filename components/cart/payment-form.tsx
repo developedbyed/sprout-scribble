@@ -13,15 +13,15 @@ import { createPaymentIntent } from "@/server/actions/create-payment-intent"
 import { useAction } from "next-safe-action/hooks"
 import { createOrder } from "@/server/actions/create-order"
 import { toast } from "sonner"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 export default function PaymentForm({ totalPrice }: { totalPrice: number }) {
   const stripe = useStripe()
   const elements = useElements()
-  const { cart, setCheckoutProgress, clearCart } = useCartStore()
+  const { cart, setCheckoutProgress, clearCart, setCartOpen } = useCartStore()
   const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
-
+  const router = useRouter()
   const { execute } = useAction(createOrder, {
     onSuccess: (data) => {
       if (data.error) {
@@ -61,7 +61,11 @@ export default function PaymentForm({ totalPrice }: { totalPrice: number }) {
       })),
     })
     if (data?.error) {
-      redirect("/auth/login")
+      setErrorMessage(data.error)
+      setIsLoading(false)
+      router.push("/auth/login")
+      setCartOpen(false)
+      return
     }
     if (data?.success) {
       const { error } = await stripe.confirmPayment({
