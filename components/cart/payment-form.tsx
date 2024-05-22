@@ -13,6 +13,7 @@ import { createPaymentIntent } from "@/server/actions/create-payment-intent"
 import { useAction } from "next-safe-action/hooks"
 import { createOrder } from "@/server/actions/create-order"
 import { toast } from "sonner"
+import { redirect } from "next/navigation"
 
 export default function PaymentForm({ totalPrice }: { totalPrice: number }) {
   const stripe = useStripe()
@@ -60,9 +61,7 @@ export default function PaymentForm({ totalPrice }: { totalPrice: number }) {
       })),
     })
     if (data?.error) {
-      setErrorMessage(data.error)
-      setIsLoading(false)
-      return
+      redirect("/auth/login")
     }
     if (data?.success) {
       const { error } = await stripe.confirmPayment({
