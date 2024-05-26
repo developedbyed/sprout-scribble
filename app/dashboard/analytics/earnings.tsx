@@ -13,7 +13,14 @@ import { cn } from "@/lib/utils"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useMemo } from "react"
 import { weeklyChart } from "./weekly-chart"
-import { Bar, BarChart, ResponsiveContainer, Tooltip } from "recharts"
+import {
+  Bar,
+  BarChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts"
 import { monthlyChart } from "./monthly-chart"
 
 export default function Earnings({
@@ -56,7 +63,7 @@ export default function Earnings({
       <CardHeader>
         <CardTitle>Your Revenue: ${activeTotal}</CardTitle>
         <CardDescription>Here are your recent earnings</CardDescription>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 pb-4">
           <Badge
             className={cn(
               "cursor-pointer",
@@ -91,7 +98,6 @@ export default function Earnings({
                 content={(props) => (
                   <div>
                     {props.payload?.map((item) => {
-                      console.log(item)
                       return (
                         <div
                           className="bg-primary py-2 px-4 rounded-md shadow-lg"
@@ -105,6 +111,8 @@ export default function Earnings({
                   </div>
                 )}
               />
+              <YAxis dataKey="revenue" />
+              <XAxis dataKey="date" />
               <Bar dataKey="revenue" className="fill-primary" />
             </BarChart>
           </ResponsiveContainer>
