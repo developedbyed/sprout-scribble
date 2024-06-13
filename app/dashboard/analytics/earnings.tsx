@@ -100,7 +100,7 @@ export default function Earnings({
                     {props.payload?.map((item) => {
                       return (
                         <div
-                          className="bg-primary py-2 px-4 rounded-md shadow-lg"
+                          className="bg-primary text-white py-2 px-4 rounded-md shadow-lg"
                           key={item.payload.date}
                         >
                           <p>Revenue: ${item.value}</p>
